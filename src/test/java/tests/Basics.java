@@ -11,7 +11,7 @@ import Files.PayLoads;
 public class Basics {
 
 	public static void main(String[] args) {
-//---------------Add Place---------------------------------------------------------------------------
+//---------------AddPlace---------------------------------------------------------------------------
 		RestAssured.baseURI = "https://rahulshettyacademy.com";
 		
 		String addPlaceResponse = given()
