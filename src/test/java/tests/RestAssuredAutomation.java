@@ -60,7 +60,8 @@ public class RestAssuredAutomation {
 				.extract().response().asString();
 
 		JsonPath js2=ReusableMethods.rawToJson(idResponse);
-		String ID=js2.getString("id");
+		String KEY=js2.getString("key");
+		System.out.println("This is KEY:------"+KEY);
 
 		//---------------Add Comment-----------------------------------------------------------------------------------------
 
@@ -70,7 +71,7 @@ public class RestAssuredAutomation {
 				given()
 				.log().all()
 				.header("Content-Type","application/json")
-				.pathParam("key", ""+ID+"")
+				.pathParam("key", ""+KEY+"")
 				.body("{\r\n" + 
 						"    \"body\": \""+expComment+"\"\r\n" + 
 						"}")
@@ -91,7 +92,7 @@ public class RestAssuredAutomation {
 		given()
 		.log().all()
 		.filter(SessFilt)
-		.pathParam("key", ""+ID+"")
+		.pathParam("key", ""+KEY+"")
 		.header("X-Atlassian-Token","no-check")
 		.header("Content-Type","multipart/form-data")
 		.multiPart(new File("C:\\Users\\HP\\eclipse-workspace\\RestAssured\\src\\test\\java\\tests\\MyFile.txt"))
@@ -106,7 +107,7 @@ public class RestAssuredAutomation {
 				given()
 				.log().all()
 				.filter(SessFilt)
-				.pathParam("key", ""+ID+"")
+				.pathParam("key", ""+KEY+"")
 				.queryParam("fields", "comment")
 				.when()
 				.get("/rest/api/2/issue/{key}")

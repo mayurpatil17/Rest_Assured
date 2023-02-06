@@ -146,7 +146,6 @@ System.out.println("----------------------------Get order End-------------------
 			.log().all()
 			.assertThat().statusCode(204);
 System.out.println("-------------Delete order End---------------------------------------------------");
-		
-		
+			
 	}
 }

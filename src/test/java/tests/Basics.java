@@ -6,11 +6,15 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static org.testng.Assert.assertEquals;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import Files.PayLoads;
 
 public class Basics {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 //---------------Add Place---------------------------------------------------------------------------
 		RestAssured.baseURI = "https://rahulshettyacademy.com";
 		
@@ -18,7 +22,9 @@ public class Basics {
 			.log().all()
 			.queryParam("key", "qaclick123")
 			.header("Content-Type","application/json")
-			.body(PayLoads.AddPlacePayload())
+			//.body(PayLoads.AddPlacePayload())
+			.body(new String(Files.readAllBytes(Paths.get("E:\\Rest Assured\\Demo.json"))))
+			
 			.when()
 				.post("/maps/api/place/add/json")
 			.then()
